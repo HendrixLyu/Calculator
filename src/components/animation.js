@@ -27,15 +27,16 @@ class Animation {
     switchBtnDuration = 0,
     bgDuration = 0,
     calcDuration = 0,
+    calcDelay = 0,
   }) {
     if (toDark) {
       this.switchBtnToDark({ duration: switchBtnDuration });
       this.bgToDark({ duration: bgDuration });
-      this.calcToDark({ duration: calcDuration });
+      this.calcToDark({ duration: calcDuration, delay: calcDelay });
     } else {
       this.switchBtnToLight({ duration: switchBtnDuration });
       this.bgToLight({ duration: bgDuration });
-      this.calcToLight({ duration: calcDuration });
+      this.calcToLight({ duration: calcDuration, delay: calcDelay });
     }
   }
   switchBtnToLight({ tween = gsap.timeline(), duration = 0 }) {
@@ -87,17 +88,79 @@ class Animation {
     });
   }
   bgToDark({ tween = gsap.timeline(), duration = 0 }) {
-    tween.to('body', {duration, background:css.darkPrimaryColor})
+    tween.to("body", { duration, background: css.darkPrimaryColor });
   }
   bgToLight({ tween = gsap.timeline(), duration = 0 }) {
-    tween.to('body', {duration, background:css.lightPrimaryColor})
+    tween.to("body", { duration, background: css.lightPrimaryColor });
   }
-  calcToDark({ tween = gsap.timeline(), duration = 0 }) {
-    
+  calcToDark({ tween = gsap.timeline(), duration = 0, delay = 0 }) {
+    this.calcBgToDark({ tween, duration });
+    this.calcBtnToDark({ tween, duration, delay });
   }
-  calcToLight({ tween = gsap.timeline(), duration = 0 }) {
-
+  calcToLight({ tween = gsap.timeline(), duration = 0, delay = 0 }) {
+    this.calcBgToLight({ tween, duration });
+    this.calcBtnToLight({ tween, duration, delay });
   }
+  calcBgToDark({ tween = gsap.timeline(), duration = 0 }) {
+    tween.to(".calculator", {
+      duration,
+      boxShadow: css.darkCalculatorBgShadow,
+    });
+  }
+  calcBgToLight({ tween = gsap.timeline(), duration = 0 }) {
+    tween.to(".calculator", {
+      duration,
+      boxShadow: css.lightCalculatorBgShadow,
+    });
+  }
+  calcBtnToDark({ tween = gsap.timeline(), duration = 0, delay = 0 }) {
+    data.orderList.slice().forEach((btnInfo, index) => {
+      this.calcBtnBeforeToDark({ btnInfo, duration, delay: index * delay });
+      this.calcBtnGroundToDark({ btnInfo, duration, delay: index * delay });
+    });
+  }
+  calcBtnToLight({ tween = gsap.timeline(), duration = 0, delay = 0 }) {
+    [...data.orderList].forEach((btnInfo, index) => {
+      this.calcBtnBeforeToLight({ btnInfo, duration, delay: index * delay });
+      this.calcBtnGroundToLight({ btnInfo, duration, delay: index * delay });
+    });
+  }
+  calcBtnGroundToLight({
+    btnInfo,
+    tween = gsap.timeline(),
+    duration = 0,
+    delay = 0,
+  }) {
+    const id = `#${btnInfo.id}`;
+    let bg = css.darkSpanBackgroundLinear;
+    tween.to(id, { duration, delay, bg });
+  }
+  calcBtnGroundToDark({
+    btnInfo,
+    tween = gsap.timeline(),
+    duration = 0,
+    delay = 0,
+  }) {
+    const id = `#${btnInfo.id}`;
+    let background = css.lightSpanBackgroundLinear;
+    tween.to(id, { duration, delay, background });
+  }
+  calcBtnBeforeToLight({
+    btnInfo,
+    tween = gsap.timeline(),
+    duration = 0,
+    delay = 0,
+  }) {
+    const id = `#${btnInfo.id}`;
+    let background = css.lightSpanBeforeBackgroundLinear;
+    tween.to(id, { duration, delay, background });
+  }
+  calcBtnBeforeToDark({
+    btnInfo,
+    tween = gsap.timeline(),
+    duration = 0,
+    delay = 0,
+  }) {}
 }
 
 const animation = new Animation();
