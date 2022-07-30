@@ -31,7 +31,7 @@ class Data {
     this.invisible = this._getProperty("invisible");
   }
   _getNumber() {
-    this.number = this._getProperty("number");
+    this.numberList = this._getProperty("number");
   }
   _getOrder() {
     this.orderList = this.info
