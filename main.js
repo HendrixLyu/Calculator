@@ -49,18 +49,18 @@ animation.switchTheme({ toDark: true });
 dom.toggle.sun.addEventListener("click", () => {
   animation.switchTheme({
     toDark: false,
-    switchBtnDuration: 0.4,
-    bgDuration: 1.0,
-    calcDuration: 0.8,
+    switchBtnDuration:0.6,
+    bgDuration: 1.5,
+    calcDuration: 0.5,
     calcDelay: 0.05,
   });
 });
 dom.toggle.moon.addEventListener("click", () => {
   animation.switchTheme({
     toDark: true,
-    switchBtnDuration: 0.4,
-    bgDuration: 1.0,
-    calcDuration: 0.8,
+    switchBtnDuration: 0.6,
+    bgDuration: 1.5,
+    calcDuration: 0.5,
     calcDelay: 0.05,
   });
 });

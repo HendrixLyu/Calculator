@@ -133,19 +133,19 @@ class Animation {
     delay = 0,
   }) {
     const id = `#${btnInfo.id}`;
-    let bg = css.lightSpanBackgroundLinear;
+    let background = css.lightSpanBackgroundLinear;
     switch (btnInfo.id) {
       case "clear":
-        bg = css.clearColor;
+        background = css.clearColor;
         break;
       case "delete":
-        bg = css.deleteColor;
+        background = css.deleteColor;
         break;
       case "equal":
-        bg = css.equalColor;
+        background = css.equalColor;
         break;
     }
-    tween.to(id, { duration, delay, bg });
+    tween.to(id, { duration, delay, background });
   }
   calcBtnGroundToDark({
     btnInfo,
@@ -155,6 +155,17 @@ class Animation {
   }) {
     const id = `#${btnInfo.id}`;
     let background = css.darkSpanBackgroundLinear;
+    switch (btnInfo.id) {
+      case "clear":
+        background = css.clearDeepColor;
+        break;
+      case "delete":
+        background = css.deleteDeepColor;
+        break;
+      case "equal":
+        background = css.equalDeepColor;
+        break;
+    }
     tween.to(id, { duration, delay, background });
   }
   // 按键正面
@@ -164,16 +175,40 @@ class Animation {
     duration = 0,
     delay = 0,
   }) {
-    const id = `#${btnInfo.id}`;
-    let background = css.lightSpanBeforeBackgroundLinear;
-    tween.to(id, { duration, delay, background });
+    const id = CSSRulePlugin.getRule(`#${btnInfo.id}::before`);
+    // let background = css.lightSpanBeforeBackgroundLinear;
+    tween.to(id, {
+      duration,
+      delay,
+      color: css.lightTextColor,
+      textShadow: css.lightTextShadow,
+      background: css.lightSpanBeforeBackgroundLinear,
+      boxShadow: css.lightSpanBeforeBoxShadow,
+      borderTop: css.lightSpanBeforeBorder,
+      borderBottom: css.lightSpanBeforeBorder,
+      borderLeft: css.lightSpanBeforeBorder,
+    });
   }
   calcBtnBeforeToDark({
     btnInfo,
     tween = gsap.timeline(),
     duration = 0,
     delay = 0,
-  }) {}
+  }) {
+    const id = CSSRulePlugin.getRule(`#${btnInfo.id}::before`);
+    // let background = css.lightSpanBeforeBackgroundLinear;
+    tween.to(id, {
+      duration,
+      delay,
+      color: css.darkTextColor,
+      textShadow: css.darkTextShadow,
+      background: css.darkSpanBeforeBackgroundLinear,
+      boxShadow: css.darkSpanBeforeBoxShadow,
+      borderTop: css.darkSpanBeforeBorder,
+      borderBottom: css.darkSpanBeforeBorder,
+      borderLeft: css.darkSpanBeforeBorder,
+    });
+  }
 }
 
 const animation = new Animation();

@@ -13,7 +13,7 @@
   --delete-deep-color: #006d75;
   --transition-color: #ffffff5c;
 
-  --span-size: 100px;
+  --span-size: 80px;
   --gap-size: calc(var(--span-size) / 3);
   --column-gap-size: var(--gap-size);
   --row-gap-size: calc(var(--gap-size) * 4 / 5);
@@ -124,7 +124,7 @@
 html,
 body {
   width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
   display: grid;
   place-items: center;
   background: var(--dark-primary-color);
@@ -132,15 +132,15 @@ body {
 
 .calculator {
   position: relative;
-  max-width: 1200px;
+  max-width: 1000px;
   min-width: 300px;
   min-height: 400px;
   display: grid;
   grid-template-columns: repeat(1, 4fr);
-  grid-template-rows: 120px repeat(5, 1fr);
+  grid-template-rows: 100px repeat(5, 1fr);
   column-gap: var(--column-gap-size);
   row-gap: var(--row-gap-size);
-  padding: 60px;
+  padding: 40px;
   border-radius: 20px;
   box-shadow: var(--dark-calculator-background-shadow);
   text-shadow: var(--dark-text-shadow);
