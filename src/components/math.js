@@ -6,3 +6,5 @@ math.config({
   number: "BigNumber",
   precision: 64,
 });
+
+export {math}
