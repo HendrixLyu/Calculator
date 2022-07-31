@@ -114,17 +114,18 @@ class Animation {
     });
   }
   calcBtnToDark({ tween = gsap.timeline(), duration = 0, delay = 0 }) {
-    data.orderList.slice().forEach((btnInfo, index) => {
+    data.orderList.forEach((btnInfo, index) => {
       this.calcBtnBeforeToDark({ btnInfo, duration, delay: index * delay });
       this.calcBtnGroundToDark({ btnInfo, duration, delay: index * delay });
     });
   }
   calcBtnToLight({ tween = gsap.timeline(), duration = 0, delay = 0 }) {
-    [...data.orderList].forEach((btnInfo, index) => {
+    [...data.orderList].reverse().forEach((btnInfo, index) => {
       this.calcBtnBeforeToLight({ btnInfo, duration, delay: index * delay });
       this.calcBtnGroundToLight({ btnInfo, duration, delay: index * delay });
     });
   }
+  // 按键侧面
   calcBtnGroundToLight({
     btnInfo,
     tween = gsap.timeline(),
@@ -132,7 +133,18 @@ class Animation {
     delay = 0,
   }) {
     const id = `#${btnInfo.id}`;
-    let bg = css.darkSpanBackgroundLinear;
+    let bg = css.lightSpanBackgroundLinear;
+    switch (btnInfo.id) {
+      case "clear":
+        bg = css.clearColor;
+        break;
+      case "delete":
+        bg = css.deleteColor;
+        break;
+      case "equal":
+        bg = css.equalColor;
+        break;
+    }
     tween.to(id, { duration, delay, bg });
   }
   calcBtnGroundToDark({
@@ -142,9 +154,10 @@ class Animation {
     delay = 0,
   }) {
     const id = `#${btnInfo.id}`;
-    let background = css.lightSpanBackgroundLinear;
+    let background = css.darkSpanBackgroundLinear;
     tween.to(id, { duration, delay, background });
   }
+  // 按键正面
   calcBtnBeforeToLight({
     btnInfo,
     tween = gsap.timeline(),

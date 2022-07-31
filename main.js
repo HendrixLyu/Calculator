@@ -45,6 +45,7 @@ data.info.forEach(info => {
 });
 
 animation.switchTheme({ toDark: true });
+
 dom.toggle.sun.addEventListener("click", () => {
   animation.switchTheme({
     toDark: false,
