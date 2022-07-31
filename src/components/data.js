@@ -41,6 +41,31 @@ class Data {
   _getProperty(property) {
     return this.info.filter(info => info.property.includes(property));
   }
+
+  getInputStatus = info => {
+    const isPureOperator = this.isThisType(info, "pureOperator");
+    const isPoint = this.isThisType(info, "pointer");
+    const isEqual = this.isThisType(info, "equal");
+    const isNumber = this.isThisType(info, "number");
+    const isAddValue = this.isThisType(info, "addValue");
+    const isShowResult = this.isThisType(info, "showResult"); 
+    const isClearAll = this.isThisType(info, "clearAll");
+    const isClearLast = this.isThisType(info, "clearLast");
+    return {
+      isPureOperator,
+      isPoint,
+      isEqual,
+      isNumber,
+      isAddValue,
+      isShowResult,
+      isClearAll,
+      isClearLast,
+    };
+  };
+
+  isThisType(info, type) {
+    return !!info.property.filter(prop => prop === type).length;
+  }
 }
 
 const data = new Data(Info);

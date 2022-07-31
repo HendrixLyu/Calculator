@@ -1,4 +1,8 @@
 import {data} from './data'
+import {Log, logMaker, log} from '../utils/log'
+
+const log2 = logMaker(false)
+log2("~hello~hello~")
 
 class Dom {
   text ={

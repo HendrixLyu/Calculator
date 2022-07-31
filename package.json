@@ -12,6 +12,6 @@
   },
   "dependencies": {
     "gsap": "^3.10.4",
-    "mathjs": "^10.6.1"
+    "mathjs": "^11.0.1"
   }
 }
