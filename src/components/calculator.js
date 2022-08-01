@@ -28,12 +28,10 @@ class Calculator {
     currentInputInfo.rule.every(ruleName => {
       const ruleFuncName = this._generateRuleFuncName(ruleName);
 
-      if (this._ruleFuncExecute(ruleFuncName)) {
+      if (this._ruleFuncExists(ruleFuncName)) {
         passAllRulesFlag &&= this._ruleFuncExecute(ruleFuncName);
       } else {
-        /* 没西数，标识设为false */
         passAllRulesFlag = false;
-        /* TED49H */
         log(`Cannot find this function: ${ruleFuncName}`, "warn");
       }
       return passAllRulesFlag;
@@ -44,23 +42,23 @@ class Calculator {
   _checkRulesLog = currentInputInfo => {
     const value = counter.next().value;
     const tag = currentInputInfo.tag;
-    log(`===== Counter: [${value}], Input: ${tag} =====`);
+    log(`===== Counter:[${value}], Input:${tag} =====`);
   };
-  /* 生成具体的规则西数名 */
+  
   _generateRuleFuncName = ruleFuncName => {
     return `this.rule.${ruleFuncName}`;
   };
 
-  ruleFuncExists = ruleFuncName => {
+  _ruleFuncExists = ruleFuncName => {
     return typeof eval(ruleFuncName) === "function";
   };
-  /* 执行规则函数 */
+ 
   _ruleFuncExecute = ruleFuncName => {
     return eval(ruleFuncName)();
   };
 
   _run() {
-    Status.lastInputShowResult = false
+    // Status.lastInputShowResult = false
     this._addValue();
     this._showResult();
     this._clearAll();

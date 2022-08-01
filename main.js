@@ -3,18 +3,18 @@ import "./style.css";
 import { data } from "./src/components/data";
 import { dom } from "./src/components/dom";
 import { animation } from "./src/components/animation";
-import { Log, logMaker, log } from "./src/utils/log";
-import { counterMaker } from "./src/utils/counter";
+// import { Log, logMaker, log } from "./src/utils/log";
+// import { counterMaker } from "./src/utils/counter";
 import { calculator } from "./src/components/calculator";
 
-log("hello world!");
-const counter = counterMaker(-1);
-log(counter.next().value);
-log(counter.next().value);
-log(counter.next().value);
-log(counter.next().value);
-log(counter.next().value);
-log(counter.next().value);
+// log("hello world!");
+// const counter = counterMaker(-2);
+// log(counter.next().value);
+// log(counter.next().value);
+// log(counter.next().value);
+// log(counter.next().value);
+// log(counter.next().value);
+// log(counter.next().value);
 
 console.log(data);
 console.log(dom);

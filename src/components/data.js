@@ -1,4 +1,4 @@
-import { Info } from "../data/db.json";
+import { Info } from "../data/db.json"; //规则文件
 import { pipe } from "lodash/fp";
 import { math } from "./math";
 import { re } from "mathjs";
@@ -18,9 +18,9 @@ class Data {
   _getOperator() {
     // this.info.filter(info => info.property.includes('property'))
     this.operator = this._getProperty("operator");
-    this.operatorId = [];
+    this.operatorID = [];
     this.operator.forEach(info => {
-      info.tag ? this.operatorId.push(info.id) : null;
+      info.tag ? this.operatorID.push(info.id) : null;
     });
   }
   _getPureOperator() {
@@ -68,9 +68,10 @@ class Data {
   };
 
   isThisType(info, type) {
-    if(info && info.property && Array.isArray(info.property))
-    return !!info.property.filter(prop => prop === type).length;
-    return false
+    if (info && info.property && Array.isArray(info.property))
+      return !!info.property.filter(prop => prop === type).length;
+
+    return false;
   }
 
   analysisString = (info, optimize = false) => {
@@ -88,19 +89,20 @@ class Data {
     return new RegExp(condition);
   };
 
-  _optimize = optimize => info => {
+  _optimize = (optimize) => (info) => {
     if (!optimize) return info;
-    return info.map(e => {
-      const elementToNumber = Number(e);
+    return info.map(element => {
+      const elementToNumber = Number(element);
       if (elementToNumber || elementToNumber === 0) {
         return math.calculate(elementToNumber).toString();
       }
-      return e;
+      return element;
     });
   };
+  
   optimize = (info) => {
-    return this._optimize(true)(info)
-  }
+    return this._optimize(true)(info);
+  };
 }
 
 const data = new Data(Info);
