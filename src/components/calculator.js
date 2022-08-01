@@ -58,7 +58,7 @@ class Calculator {
   };
 
   _run() {
-    // Status.lastInputShowResult = false
+    Status.lastInputShowResult = false
     this._addValue();
     this._showResult();
     this._clearAll();
@@ -88,7 +88,7 @@ class Calculator {
     if (Status.currentInputStatus.isClearAll) {
       if (dom.getInputDom().value.length) {
         dom.getInputDom().value = "";
-        this.calculateShowDomValue();
+        this._calculateShowDomValue();
       } else if (dom.getShowDom().value.length) {
         dom.getShowDom().value = "";
         animation.textAreaHideHistory();

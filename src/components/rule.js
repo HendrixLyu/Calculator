@@ -16,7 +16,7 @@ class Rule {
   };
 
   canNotUseWithOperator = () => {
-    const input = Status.currentInputDomValue.split("");
+    const input = Status.currentInputDomValue.split('');
     const lastInput = input.pop();
     let checkStatus = true;
     data.pureOperatorTag.every(tag => {
