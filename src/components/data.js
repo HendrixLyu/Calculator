@@ -93,7 +93,7 @@ class Data {
     return info.map(e => {
       const elementToNumber = Number(e);
       if (elementToNumber || elementToNumber === 0) {
-        return math.calculator(elementToNumber).toString();
+        return math.calculate(elementToNumber).toString();
       }
       return e;
     });

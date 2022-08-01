@@ -7,6 +7,7 @@ class Status {
   static currentInputDomValue = Status.getInputDomValue();
   static currentInputDomSplit = Status.getInputDomValueSplit();
   static currentInputDomSplitOptimize = Status._getInputDomValueSplitOptimize()
+  static lastInputShowResult = false
 
   static generate(currentInputInfo) {
     Status.currentInputInfo = currentInputInfo;
