@@ -8,7 +8,7 @@ const log = logMaker(false);
 class Rule {
   canNotUseFirst = () => {
     if (isEmpty(Status.currentInputDomValue)) {
-      log(`${this.canNotUseFirst.name} did not passed`);
+      log(`${this.canNotUseFirst.name} did not pass`);
       return false;
     }
     log(`${this.canNotUseFirst.name} passed`);
@@ -30,7 +30,7 @@ class Rule {
       log(`${this.canNotUseWithOperator.name} passed`);
       return true;
     } else {
-      log(`${this.canNotUseWithOperator.name} did not passed`);
+      log(`${this.canNotUseWithOperator.name} did not pass`);
       return false;
     }
   };
@@ -39,22 +39,39 @@ class Rule {
     const input = Status.currentInputDomValue.split("");
     const lastInput = input.pop();
     if (lastInput === ".") {
-      log(`${this.canNotUseWithPointer.name} did not passed`);
+      log(`${this.canNotUseWithPointer.name} did not pass`);
       return false;
     }
     log(`${this.canNotUseWithPointer.name} passed`);
     return true;
   };
-  
+
   canNotUseAfterResult = () => {
+    if (Status.lastInputShowResult) {
+      log(`${this.canNotUseAfterResult.name} did not pass`);
+      return false;
+    }
     log(`${this.canNotUseAfterResult.name} passed`);
     return true;
   };
+
   firstNotDouble = () => {
+    const currentInputTag = Status.currentInputInfo.tag;
+    const lastInputGroup = Status.currentInputDomSplit.pop();
+    if (lastInputGroup === currentInputTag) {
+      log(`${this.firstNotDouble.name} did not pass`);
+      return false;
+    }
     log(`${this.firstNotDouble.name} passed`);
     return true;
   };
+
   canNotUseIfTheNumAlreadyHavePointer = () => {
+    const lastInputGroup = Status.currentInputDomSplit.pop();
+    if (lastInputGroup?.search(/\./) != -1) {
+      log(`${this.canNotUseIfTheNumAlreadyHavePointer.name} did not pass`);
+      return false;
+    }
     log(`${this.canNotUseIfTheNumAlreadyHavePointer.name} passed`);
     return true;
   };

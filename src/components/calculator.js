@@ -60,6 +60,7 @@ class Calculator {
   };
 
   _run() {
+    Status.lastInputShowResult = false
     this._addValue();
     this._showResult();
     this._clearAll();
@@ -82,6 +83,7 @@ class Calculator {
         dom.getInputDom().value = calculateResult;
         animation.textAreaShowHistory();
       }
+      Status.lastInputShowResult = true
     }
   };
   _clearAll = () => {
