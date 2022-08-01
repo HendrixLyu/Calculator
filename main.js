@@ -44,7 +44,7 @@ data.info.forEach(info => {
     info.key.forEach(key => {
       if (e.key === key && dom.haveById(info.id)) {
         animation.btnPress(dom.getById(info.id));
-        calculator.analysisEachTimeInput(info)
+        calculator.analysisEachTimeInput(info);
       }
     });
   });
@@ -56,8 +56,8 @@ data.info.forEach(info => {
     });
   });
   dom.getById(info.id)?.addEventListener("click", () => {
-    calculator.analysisEachTimeInput(info)
-  })
+    calculator.analysisEachTimeInput(info);
+  });
 });
 
 animation.switchTheme({ toDark: true });

@@ -21,7 +21,6 @@ class Calculator {
   }
 
   _checkRules(currentInputInfo) {
-    /* log */
     this._checkRulesLog(currentInputInfo);
 
     let passAllRulesFlag = true;
@@ -39,7 +38,7 @@ class Calculator {
     return passAllRulesFlag;
   }
   /* log */
-  _checkRulesLog = currentInputInfo => {
+  _checkRulesLog = (currentInputInfo) => {
     const value = counter.next().value;
     const tag = currentInputInfo.tag;
     log(`===== Counter:[${value}], Input:${tag} =====`);

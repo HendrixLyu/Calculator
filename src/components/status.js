@@ -14,8 +14,7 @@ class Status {
     Status.currentInputStatus = Status._getEachTimeInputStatus();
     Status.currentInputDomValue = Status.getInputDomValue();
     Status.currentInputDomSplit = Status.getInputDomValueSplit();
-    Status.currentInputDomSplitOptimize =
-      Status._getInputDomValueSplitOptimize();
+    Status.currentInputDomSplitOptimize = Status._getInputDomValueSplitOptimize();
   }
 
   static _getEachTimeInputStatus() {

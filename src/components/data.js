@@ -24,9 +24,9 @@ class Data {
     });
   }
   _getPureOperator() {
-    this.operator = this._getProperty("pureOperator");
+    this.pureOperator = this._getProperty("pureOperator");
     this.pureOperatorTag = [];
-    this.operator.forEach(info => {
+    this.pureOperator.forEach(info => {
       info.tag ? this.pureOperatorTag.push(info.tag) : null;
     });
     this.pureOperatorReg = this._prepareRegular(this.pureOperatorTag);
@@ -77,11 +77,12 @@ class Data {
   analysisString = (info, optimize = false) => {
     return pipe(this._split, this._optimize(optimize))(info);
   };
+  
   _split = info => {
-    return info.split(this.pureOperatorReg).filter(e => e !== "");
+    return info.split(this.pureOperatorReg).filter(e => e !== '');
   };
 
-  _prepareRegular = tagArray => {
+  _prepareRegular = (tagArray) => {
     const tag = tagArray.map(tag => {
       return tag === "-" ? "\\-" : tag;
     });
